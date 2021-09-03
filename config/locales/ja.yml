@@ -5,4 +5,7 @@ ja:
         name: "お名前"
         password: "パスワード"
         password_confirmation: "パスワード確認"
+        new_password: "新しいパスワード"
+        new_password_confirmation: "新しいパスワード"
+        current_password: "現行のパスワード"
         email: "メールアドレス"
