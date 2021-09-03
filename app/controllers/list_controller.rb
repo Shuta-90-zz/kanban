@@ -14,6 +14,6 @@ class ListController < ApplicationController
 
   private
   def list_params
-    params.require(:list).permit(:title).merge(user_id: current_user)
+    params.require(:list).permit(:title).merge(user:current_user)
   end
 end
