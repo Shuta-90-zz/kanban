@@ -16,6 +16,10 @@
         <label>リスト名</label>
         <%= select :card,:list_id, @lists.map {|list| [list.title, list.id]}, {}, {class:'form-select'} %>
     </div>
+      <div class="cardeditForm_memo">
+          <label>順番</label>
+          <%= f.select :order_id, ['1','2','3','4','5'], {}, {class:'form-select'} %>
+      </div>
     <div class="text-center"><%= f.submit '更新する', class:'submitBtn'  %></div>
     <% end %>
   </div>

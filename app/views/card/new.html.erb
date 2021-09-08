@@ -1,9 +1,14 @@
 <div class="cardnewPgae">
   <div class='container'>
     <%= form_with model: @card, url: { action: :create }, html: { class: 'cardnewForm' }, local: true do |f| %>
-      <%= f.hidden_field :list_id, value: @list.id %>
-      <% if @card.errors.any? %>
-        <p class="text-danger">タイトルは1～255文字以内で入力してください</p>
+      <%= f.hidden_field :list_id, value:@list.id %>
+      <% if session[:error].present? %>
+        <ul>
+          <% session[:error].each do |e| %>
+           <li><%= e %></li>
+          <% end %>
+          <% session[:error] = nil # 念のため使い終わったら消す %>   
+        </ul>
       <% end %>
       <div class="cardnewForm_title">
         <%= f.label :title %>
@@ -11,9 +16,13 @@
       </div>
       <div class="cardnewForm_memo">
         <%= f.label :memo %>
-        <%= f.text_area :memo, autofocus: true, class: "form-control", placeholder: "詳細" %>
-      <div class="text-center"><%= f.submit "作成する", class: "submitBtn" %></div>
+        <%= f.text_area :memo, class: "form-control", placeholder: "詳細" %>
       </div>
+      <div class="cardeditForm_memo">
+          <label>順番</label>
+          <%= f.select :order_id, ['1','2','3','4','5'], {}, {class:'form-select'} %>
+      </div>
+      <div class="text-center"><%= f.submit "作成する", class: "submitBtn" %></div>
     <% end %>
   </div>
 </div>

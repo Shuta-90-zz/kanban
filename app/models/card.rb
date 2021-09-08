@@ -3,4 +3,5 @@ class Card < ApplicationRecord
 
   validates :title, length: {in: 1..255}
   validates :memo, length: {maximum: 1000}
+  validates :order_id, presence: true, uniqueness: {message: '順番に重複があります'}
 end

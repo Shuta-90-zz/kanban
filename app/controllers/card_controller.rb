@@ -10,10 +10,12 @@ class CardController < ApplicationController
 
   def create
     @card = Card.new params_card
+    @list = List.find params[:list_id]
     if @card.save
       redirect_to :root
     else
-      render action: :new
+      session[:error] = @card.errors.full_messages
+      redirect_to new_list_card_path(@list)
     end
   end
 
@@ -39,6 +41,6 @@ class CardController < ApplicationController
 
   private
   def params_card
-    params.require(:card).permit(:title, :memo, :list_id)
+    params.require(:card).permit(:title, :memo, :order_id, :list_id)
   end
 end
